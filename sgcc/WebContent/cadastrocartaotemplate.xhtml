@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+	<ui:define name="tituloPagina">Cadastro de cartões</ui:define>
+	<ui:define name="tituloPrincipal">Cadastro de cartões</ui:define>
+	<ui:define name="tituloSecundario">realiza o cadastro de cartões para um determinado cliente</ui:define>
+	<ui:define name="botoesAcao">
+		<p:commandButton value="Cadastrar"
+			action="#{cartaoCreditoBean.GerarCartaoCredito()}" update="@form" />
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<p:panel header="Cadastro de cartão">
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n1" value="Cliente:" />
+				<p:selectOneMenu id="n1" value="#{cartaoCreditoBean.cartao.cliente}"
+					converter="omnifaces.SelectItemsIndexConverter">
+					<f:selectItem itemLabel="Selecione um" noSelectionOption="true" />
+					<f:selectItems value="#{clienteBean.ListarClientes()}"
+						var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}" />
+				</p:selectOneMenu>
+				<p:message for="n1" />
+				<p:outputLabel for="n2" value="Crédito inicial" />
+				<p:inputNumber id="n2"
+					value="#{cartaoCreditoBean.cartao.valorCredito}" />
+				<p:message for="n2" />
+
+				<p:outputLabel value="Vencimento do cartão: " />
+				<p:outputLabel value="#{cartaoCreditoBean.cartao.dataVencimento}" />
+
+			</p:panelGrid>
+
+
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+</html>

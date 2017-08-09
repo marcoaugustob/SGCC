@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+	<ui:define name="tituloPagina">Efetuar transação</ui:define>
+	<ui:define name="tituloPrincipal">Efetuar transação</ui:define>
+	<ui:define name="tituloSecundario">realiza a transação</ui:define>
+	<ui:define name="botoesAcao">
+		<p:commandButton value="Efetuar transação"
+			action="#{transacaoBean.EfetuarTransacao()}" update="@form" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<p:panel header="Efetuar transação">
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n1" value="Cartão de crédito" />
+				<p:inputMask mask="9999.9999.9999.9999" id="n1"
+					value="#{transacaoBean.numero}" />
+				<p:message for="n1" />
+				<p:outputLabel for="n2" value="Código de segurança" />
+				<p:inputMask mask="999" id="n2" value="#{transacaoBean.cod}" />
+				<p:message for="n2" />
+				<p:outputLabel for="n3" value="Crédito inicial" />
+				<p:inputNumber id="n3" value="#{transacaoBean.transacao.valor}"
+					decimalPlaces="2" decimalSeparator="," thousandSeparator="." />
+				<p:message for="n3" />
+				<p:outputLabel for="n4" value="Tipo de operação" />
+				<p:selectOneRadio id="n4" value="#{transacaoBean.transacao.tipo}">
+					<f:selectItem itemLabel="Crédito" itemValue="Crédito" />
+					<f:selectItem itemLabel="Débito" itemValue="Débito" />
+				</p:selectOneRadio>
+				<p:message for="n4" />
+				<p:outputLabel for="n5" value="Agente financeiro" />
+				<p:inputText id="n5" value="#{transacaoBean.transacao.agente}"
+					placeholder="Nome do estabelecimento que demandou a operação financeira" />
+				<p:message for="n5" />
+
+			</p:panelGrid>
+
+		</p:panel>
+
+	</ui:define>
+
+
+</ui:composition>
+</html>

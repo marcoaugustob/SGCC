@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+	<ui:define name="tituloPagina">Cadastrar cliente</ui:define>
+	<ui:define name="tituloPrincipal">Cadastrar clientes</ui:define>
+	<ui:define name="tituloSecundario">realiza o cadastro de clientes</ui:define>
+	<ui:define name="botoesAcao">
+		<p:commandButton value="Cadastrar"
+			action="#{clienteBean.CadastrarCliente()}" update="@form" />
+		<a href="/sgcc/listarclientes.jsf">Listar clientes</a>
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<p:panel header="Cadastro de cliente">
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n1" value="Nome:" />
+				<p:inputText id="n1" value="#{clienteBean.cliente.nome}" />
+				<p:message for="n1" />
+
+				<p:outputLabel for="n2" value="Email" />
+				<p:inputText id="n2" value="#{clienteBean.cliente.email}" />
+				<p:message for="n2" />
+
+				<p:outputLabel for="n3" value="CPF:" />
+				<p:inputMask id="n3" mask="999.999.999-99"
+					value="#{clienteBean.cliente.cpf}" />
+				<p:message for="n3" />
+
+				<p:outputLabel for="n4" value="Data de nascimento:" />
+				<p:calendar id="n4" value="#{clienteBean.cliente.dataNasc}" />
+				<p:message for="n4" />
+
+				<p:outputLabel for="n5" value="Renda média:" />
+				<p:inputNumber id="n5" value="#{clienteBean.cliente.rendaMedia}"
+					thousandSeparator="." decimalSeparator="," decimalPlaces="2" />
+				<p:message for="n5" />
+
+				<p:outputLabel for="n6" value="Telefone" />
+				<p:inputMask id="n6" mask="(99) 99999-9999"
+					value="#{clienteBean.cliente.telefone}" />
+				<p:message for="n6" />
+			</p:panelGrid>
+		</p:panel>
+	</ui:define>
+
+
+</ui:composition>
+</html>

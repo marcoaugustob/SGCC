@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<h:form>
+		<p:panel header="Relatório de transações">
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="n1" value="Cartão de crédito" />
+				<p:inputMask mask="9999.9999.9999.9999" id="n1"
+					value="#{cartaoCreditoBean.numero}" />
+				<p:message for="n1" />
+				<p:outputLabel for="n2" value="Código" />
+				<p:inputMask mask="999" id="n2"
+					value="#{cartaoCreditoBean.cod}" />
+				<p:message for="n2" />
+				<p:commandButton value="Pesquisar transações"
+					action="#{cartaoCreditoBean.ListarTransacoes()}" update="@form" />
+
+			</p:panelGrid>
+
+			<p:dataTable value="#{cartaoCreditoBean.lista}" var="transacoes">
+
+				<p:column headerText="Cliente">
+					<p:outputLabel value="#{transacoes.cartaoCredito.cliente.nome}" />
+				</p:column>
+				<p:column headerText="Data">
+					<p:outputLabel value="#{transacoes.data}" />
+				</p:column>
+				<p:column headerText="Tipo">
+					<p:outputLabel value="#{transacoes.tipo}" />
+				</p:column>
+				<p:column headerText="Valor">
+					<p:outputLabel value="#{transacoes.valor}" />
+				</p:column>
+				<p:column headerText="Agente">
+					<p:outputLabel value="#{transacoes.agente}" />
+				</p:column>
+			</p:dataTable>
+
+		
+		</p:panel>
+		
+
+	</h:form>
+
+
+</h:body>
+</html>

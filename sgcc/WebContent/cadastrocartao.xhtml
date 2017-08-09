@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head><title>Cadastrar cartão</title></h:head> 
+<h:body> 
+
+	<p:growl globalOnly="true" autoUpdate="true" />
+
+	<h:form>
+	
+		<p:panel header="Cadastro de cartão">
+		
+			<p:panelGrid columns="3">
+				
+				<p:outputLabel for="n1" value="Cliente:" />
+				<p:selectOneMenu id="n1" value="#{cartaoCreditoBean.cartao.cliente}" converter="omnifaces.SelectItemsIndexConverter">
+					<f:selectItem itemLabel="Selecione um" noSelectionOption="true"/>
+					<f:selectItems value="#{clienteBean.ListarClientes()}" var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}"/>
+				</p:selectOneMenu>
+				<p:message for="n1" />
+				<p:outputLabel for="n2" value="Crédito inicial"/>
+				<p:inputNumber id="n2" value="#{cartaoCreditoBean.cartao.valorCredito}" />
+				<p:message for="n2" />
+				
+				<p:outputLabel value="Vencimento do cartão: " />
+				<p:outputLabel value="#{cartaoCreditoBean.cartao.dataVencimento}"/>
+				<p:commandButton value="Cadastrar" action="#{cartaoCreditoBean.GerarCartaoCredito()}" update="@form"/>
+			</p:panelGrid>
+			
+		
+		</p:panel>
+	
+	</h:form>
+
+</h:body> 
+</html>
